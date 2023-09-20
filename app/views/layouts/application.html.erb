@@ -9,8 +9,10 @@
 
   <body>
     <%= render "shared/navbar" %>
+    <div class="container">
+      <%= render "shared/flashes" %>
+      <%= yield %>
 
-
-    <%= yield %>
+    </div>
   </body>
 </html>

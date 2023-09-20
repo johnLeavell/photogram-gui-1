@@ -20,7 +20,9 @@
     <% @users.each do |user| %>
       <th scope="row"><%= user.id %></th>
       <th scope="row"><%= user.username %></th>
-      <th scope="row"> </th>
+      <th scope="row"><a href="/users/<%= user.username%>">
+          Show details
+        </a></th>
     </tr>
     <% end %>
   </tbody>
