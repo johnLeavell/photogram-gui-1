@@ -54,3 +54,55 @@
     </a>
   </dd>
 </dl>
+
+<h2>Comments</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>
+        Commenter
+      </th>
+
+      <th>
+        Comment
+      </th>
+
+      <th>
+        Posted
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td>
+          <%= comment.commenter.username %>
+        </td>
+
+        <td>
+          <%= comment.body %>
+        </td>
+
+        <td>
+          <%= comment.created_at %> 
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Add a new comment</h3>
+
+<form action="/add_comment" method="post">
+  <label for="browser_photo_id">Photo ID</label>
+  <input id="browser_photo_id" type="text" placeholder="Enter the photo ID" name="input_photo_id" value="<%= @photo.id %>">
+
+  <label for="browser_author_id">Author ID</label>
+  <input id="browser_author_id" type="text" placeholder="Enter your author ID" name="input_author_id">
+
+  <label for="browser_comment">Comment</label>
+  <textarea id="browser_comment" type="text" placeholder="Enter a comment..." name="input_body"></textarea>
+
+  <button>Add comment</button>
+</form>

@@ -10,4 +10,7 @@ Rails.application.routes.draw do
   get '/photos/:id', to: 'photos#show'
   post '/update_photo/:id', to: 'photos#update'
   get '/delete_photo/:id', to: 'photos#destroy'
+
+  post '/add_comment', to: 'photos#add_comment'
+
 end

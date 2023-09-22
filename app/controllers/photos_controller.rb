@@ -25,7 +25,7 @@ class PhotosController < ApplicationController
   def show
     id = params.fetch("id")
     @photo = Photo.find_by(id: id)
-
+    @comments = Comment.where(photo_id: id).order(created_at: :desc)
   end
 
   def update
@@ -55,6 +55,24 @@ class PhotosController < ApplicationController
     flash[:notice] = "Photo successfully deleted."
     
     redirect_to photos_path
+  end
+
+  def add_comment
+    @comment = Comment.new
+    @comment.photo_id = params.fetch("input_photo_id")
+    @comment.author_id = params.fetch("input_author_id")
+    @comment.body = params.fetch("input_body")
+
+    if @comment.valid?
+      @comment.save
+
+      flash[:notice] = "Comment successfully added."
+      redirect_to("/photos/#{@comment.photo_id}")
+
+    else
+      flash[:notice] = "Unable to add comment."
+      redirect_to("/photos/#{params.fetch("input_photo_id")}")
+    end
   end
 
 end
